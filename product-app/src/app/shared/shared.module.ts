@@ -5,6 +5,7 @@ import { PowerPipe } from './pipes/power.pipe';
 import { FilterPipe } from './pipes/filter.pipe';
 import { SortPipe } from './pipes/sort.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
+import { DataService } from './services/data.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,11 @@ import { HighlightDirective } from './directives/highlight.directive';
   declarations: [LikeComponent, PowerPipe, FilterPipe, SortPipe, HighlightDirective],
   exports:[ // ensure other modules can use component, directive, pipes
     LikeComponent,
-    HighlightDirective
+    HighlightDirective,
+    PowerPipe
+  ],
+  providers : [
+    DataService // singleton instance 
   ]
 })
 export class SharedModule { 

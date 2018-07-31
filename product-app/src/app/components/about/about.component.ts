@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService, Memeber } from '../../shared/services/data.service';
 
-interface Memeber{
-  name : string;
-  image : string;
-  role ?: string;/* ? for optional field*/
-}
 
 
 @Component({
@@ -15,19 +11,28 @@ interface Memeber{
 export class AboutComponent implements OnInit {
 
 
-  memberArray: Memeber[] = [
-    {
-      name:'Member2', image:'https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50',role:'CTO'
-    },
-    {
-      name:'Member3', image:'https://www.gravatar.com/avatar/00000000000000000000000000000000',role:'CEO'
-    }
-  ];
-
   showList:boolean = true;
-  constructor() { }
+  memberArray:Memeber[];
+  membersCount:number;
+
+  //inject the service component 
+  constructor(private dataService:DataService) { 
+    console.log("about component created ");
+    
+    this.memberArray = dataService.memberArray; // we can also directly specify it in HTML
+  }
 
   ngOnInit() {
+    this.dataService.memberArray$.subscribe(
+      members => {
+        this.memberArray = members;
+      }
+    );
+  }
+  
+  empty(){
+    this.dataService.clearMembers();
+    this.membersCount = this.dataService.memberArray.length;
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService, Memeber } from '../../shared/services/data.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  
+  memberArray: Memeber[];
+  membersCount : number;
 
-  ngOnInit() {
+  constructor(private dataService:DataService) { 
+    this.memberArray =  dataService.memberArray;
+    this.membersCount = this.memberArray.length;
   }
 
+  ngOnInit() {
+    // good place to call subscription for member change
+    this.dataService.memberArray$.subscribe(
+      members => {
+        console.log('header member subscription');
+        this.membersCount = members.length;
+      }
+    );
+  }
+
+  empty(){
+    this.dataService.clearMembers();
+    //this.membersCount = this.dataService.getMemberCount();
+
+  }
 }
