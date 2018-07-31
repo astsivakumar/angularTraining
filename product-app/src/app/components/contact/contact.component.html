@@ -1,0 +1,37 @@
+<h2>Contact</h2>
+
+<!-- 
+  event bubbling - propagating the event
+  ngClass
+  # templage variable
+-->
+
+
+<div (click)="outerDivClicked($event)">
+  <div (click)="divClicked($event)">
+    <button (click)="btnClicked($event)">
+      BTN
+    </button>
+
+  </div>
+</div>
+
+<div [ngClass]="{highlight : toHighLight}" 
+      (mouseenter)="toHighLight = true"
+      (mouseleave)="toHighLight = false"    
+>
+  <h4>Address</h4>
+  <p>Chennai</p>
+  <p> TN </p>
+</div>
+
+<!-- elvis operator ?. - used for null or undefined validaton -->
+<p>Address not defined: {{address?.city}}</p>
+
+<!-- 
+  # Template Reference variable
+  Help to get instance of DOM element, with-in component html
+-->
+
+<input name="name" #nameElement/>
+<p #para1>  My Paragraph </p>

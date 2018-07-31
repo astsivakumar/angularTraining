@@ -1,0 +1,26 @@
+<h2>About</h2>
+
+<h2>Members</h2>
+
+
+
+<button (click)="showList = !showList">
+    {{showList?"Hide Table":"Show Table"}}
+  </button>
+
+<table border="1" *ngIf="showList else memberNotShown">
+  <tr> <th>#</th><th>Name</th><th>Pic</th><th>Role</th></tr>
+  <tr *ngFor = "let member of memberArray ; let i = index">
+    <td>{{i+1}}</td>
+    <td> {{member.name}}</td>
+    <td> <img src="{{member.image}}"/></td>
+    <td>{{member.role}}</td>
+  </tr>
+</table>
+
+<!-- angular 4.0-->
+<ng-template #memberNotShown>
+    <p> Memeber not shown</p>
+</ng-template>
+
+

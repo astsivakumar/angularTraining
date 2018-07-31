@@ -1,0 +1,17 @@
+
+<h2> Home Page</h2>
+
+<!--
+{{express}} interpolation , evel expr toString()
+[property] property binding
+(click) event binding 
+-->
+<p>Counter {{counter}}</p>
+<p> Next Value {{ counter + 1 }} </p>
+
+<input [value]="counter"/>
+<input [value]="counter * 2"/>
+
+<button (click)="increment()"> Increment </button>
+<button (click)="counter = counter -1 "> Decrement </button>
+
