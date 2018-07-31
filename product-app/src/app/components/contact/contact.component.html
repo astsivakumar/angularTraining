@@ -35,3 +35,6 @@
 
 <input name="name" #nameElement/>
 <p #para1>  My Paragraph </p>
+
+
+<button (click)="para1.textContent = nameElement.value">BTN</button> 

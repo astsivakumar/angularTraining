@@ -12,13 +12,24 @@ import { Component } from '@angular/core';
     styleUrls : ['app.component.css']
 })
 
+
 export class AppComponent {
     // MVC - Model View Component
 
     appTitle:string = "Product App";
-    address:any = {city:'Chennai',state:"TN"}
+    address = {city:'Chennai',state:"TN"}
 
     constructor(){
         console.log("App component created");
+    }
+
+    //tobe called when customEvent is triggered
+
+    contactHandler(address: any){
+        alert(address);
+    }
+
+    readEmail(e:string){
+        console.log(e);
     }
 }

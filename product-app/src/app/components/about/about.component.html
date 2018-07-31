@@ -10,7 +10,7 @@
 
 <table border="1" *ngIf="showList else memberNotShown">
   <tr> <th>#</th><th>Name</th><th>Pic</th><th>Role</th></tr>
-  <tr *ngFor = "let member of memberArray ; let i = index">
+  <tr *ngFor = "let member of memberArray ; let i = index" appHighlight>
     <td>{{i+1}}</td>
     <td> {{member.name}}</td>
     <td> <img src="{{member.image}}"/></td>

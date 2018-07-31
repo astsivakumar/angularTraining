@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -7,12 +7,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
+  //Step 1 :  
   constructor() { }
+  //step 2 : load into browser
 
   toHighLight:boolean = false;
   address:any;
 
+  @ViewChild('nameElement')
+  nameElement:ElementRef;// wrapper for real DOM element
+
+  //step 3: ngOnInit , view is initialized
   ngOnInit() {
+    //this.nameElement.nativeElement --> will acces the real DOM object 
+    this.nameElement.nativeElement.focus();
+    this.nameElement.nativeElement.value = 'XYZz';
   }
 
   outerDivClicked(e :Event){

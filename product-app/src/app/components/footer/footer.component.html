@@ -1,3 +1,10 @@
-<p>
-  footer works!
-</p>
+
+<div>
+  <hr/>
+  <p>Copyrights @{{year}}, {{company}}</p>
+  <p appHighlight > Address {{addressValue?.city}} {{addressValue?.state}}</p>
+
+  <button (click)="contactClicked()"> Contact </button>
+  <button (click)="emitEmailAddress()">email</button>
+  
+</div>
