@@ -13,8 +13,8 @@ export class HeaderComponent implements OnInit {
   membersCount : number;
 
   constructor(private dataService:DataService) { 
-    this.memberArray =  dataService.memberArray;
-    this.membersCount = this.memberArray.length;
+    // this.memberArray =  dataService.memberArray;
+    // this.membersCount = this.memberArray.length;
   }
 
   ngOnInit() {

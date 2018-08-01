@@ -1,0 +1,34 @@
+
+<h2> Product List</h2>
+
+<span *ngIf=message> {{message}} </span>
+<span *ngIf=progMessage> {{progMessage}} </span>
+<table>
+  <tr> 
+    
+      <th> Name</th>
+      <th> price</th>
+      <th> Year</th>
+      <th> Delete</th>
+
+  </tr>
+  <tr *ngFor= "let prodVal of products$ | async" >
+    <td>
+      <a [routerLink]="['/products','edit',prodVal.id]"> 
+      {{prodVal.name}}
+      </a>
+    </td>
+
+    <td>{{prodVal.price}}</td>
+    <td>
+       {{prodVal.year}}
+    </td>
+    <td>
+        <button (click)="deleteProduct(prodVal.id)">
+          Delete
+        </button>
+     </td>
+    
+  </tr>
+
+</table>

@@ -22,13 +22,13 @@ export class HighlightDirective {
 
     @HostListener('mouseenter')
     onEnter(){
-      console.log(" Directive  holst listerner onEnter ");
+      // console.log(" Directive  holst listerner onEnter ");
       this.renderer.setStyle(this.hostElement.nativeElement,'background','lightgreen');
     }
 
     @HostListener('mouseleave')
     onLeave(){
-      console.log(" Directive  holst listerner onLeave ");
+      // console.log(" Directive  holst listerner onLeave ");
       this.renderer.removeStyle(this.hostElement.nativeElement,'background');
     }
 }

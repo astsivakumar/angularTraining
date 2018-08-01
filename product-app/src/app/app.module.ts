@@ -10,11 +10,48 @@ import { ContactComponent } from './components/contact/contact.component';
 import { SharedModule } from './shared/shared.module';
 //import { HighlightDirective } from './shared/directives/highlight.directive';
 
+import {Routes, RouterModule} from '@angular/router';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ProductModule } from './product/product.module';
+
+//ng 4.3 onwards
+import {HttpClientModule} from '@angular/common/http';
+
+//step 1 : define routes
+const routes:Routes = [
+    {
+        path: '',
+        component: HomeComponent
+    },
+    {
+        path: 'about',
+        component: AboutComponent
+    },
+    {
+        path : 'contact',
+        component: ContactComponent
+
+    },
+    
+    {
+        path : '**',//not found - wild card search
+        component : NotFoundComponent
+    }
+    
+
+]
+
 @NgModule({
     // other module dependencies
     imports:[
         BrowserModule,
-        SharedModule
+        HttpClientModule,
+        
+        SharedModule,
+        //step2:  apply route configuration into module
+        RouterModule.forRoot(routes),
+        //step3 : refer html
+        ProductModule
     ],
     //components, directives, pipes
     declarations : [
@@ -23,7 +60,8 @@ import { SharedModule } from './shared/shared.module';
         FooterComponent,
         HomeComponent,
         AboutComponent,
-        ContactComponent
+        ContactComponent,
+        NotFoundComponent
         // ,HighlightDirective
     ],
     bootstrap:[

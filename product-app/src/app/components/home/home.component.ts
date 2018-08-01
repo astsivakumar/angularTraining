@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService, Memeber } from '../../shared/services/data.service';
+
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +16,11 @@ export class HomeComponent implements OnInit {
   today = new Date();
   title = "Home";
 
-  constructor() { }
+  members$ : Observable<Memeber[]>;
+
+  constructor(private dataService : DataService) { 
+    this.members$ = this.dataService.memberArray$;
+  }
 
   ngOnInit() {
   }

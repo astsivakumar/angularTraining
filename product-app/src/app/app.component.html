@@ -2,10 +2,15 @@
     <h1>{{appTitle}}</h1> <!--{{ expression}} interpolation, or data binding -->
     <app-header></app-header>
 
-    <app-home></app-home>
+    <!-- <app-home></app-home>
     <app-about></app-about>
-    <app-contact></app-contact>
+    <app-contact></app-contact> -->
 
+    <!-- router view container , home / about/ contact html placed here-->
+    <!-- step3 : place holder for the container -->
+        <router-outlet>
+
+        </router-outlet>
     <!-- passsing data to child component-->
     <!-- <app-footer company={{appTitle}} year="2018">{{}} it is not recommented -->
     <app-footer [company]="appTitle" year="2018" [addressValue]="address" (contactEvent)="contactHandler($event)"  (mailEvent)="readEmail($event)">

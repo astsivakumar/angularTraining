@@ -1,9 +1,15 @@
 <div>
+  <a routerLink="/" class="button" routerLinkActive="warning" [routerLinkActiveOptions]="{exact:true}"> Home</a>
+
+  <a routerLink="/products" class="button" routerLinkActive="warning"> Products </a>
+  <a routerLink="/cart" class="button" routerLinkActive="warning"> Cart </a>
+  
+  <a routerLink="/about" class="button" routerLinkActive="warning"> About </a>
+  <a routerLink="/contact" class="button" routerLinkActive="warning">  Contact  </a>
 
 <span>Members {{membersCount}}</span>
 <hr>
 <button (click)="empty()">
   Remove Members
 </button>
-<hr>
 </div>

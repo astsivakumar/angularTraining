@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import {Subject} from  'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 /*
 
@@ -34,7 +35,9 @@ export class DataService {
   ];
 
   // Observable $ is convention
-  memberArray$: Subject<Memeber[]> = new Subject();
+  //memberArray$: Subject<Memeber[]> = new Subject();
+  //replace with Behavour subject
+  memberArray$:BehaviorSubject<Memeber[]> = new BehaviorSubject(this.memberArray);
 
 
   clearMembers(){

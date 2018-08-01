@@ -28,4 +28,12 @@ Date <input value = "{{today | date}}" readonly/>
 <p> check ::  {{5|power:3}}</p>
 <p> default PIPE {{5|power}}</p>
 
+<!-- async will subscribe automatically -->
+<h4>Members------------ </h4>
+<ul>
+    <li *ngFor="let member of members$ | async">
+        {{member.name}}
+    </li>
+</ul>
+
 <app-like></app-like>

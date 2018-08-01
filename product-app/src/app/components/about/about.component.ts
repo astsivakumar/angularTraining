@@ -19,7 +19,7 @@ export class AboutComponent implements OnInit {
   constructor(private dataService:DataService) { 
     console.log("about component created ");
     
-    this.memberArray = dataService.memberArray; // we can also directly specify it in HTML
+    //this.memberArray = dataService.memberArray; // we can also directly specify it in HTML
   }
 
   ngOnInit() {

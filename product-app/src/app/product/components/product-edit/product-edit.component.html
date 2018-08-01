@@ -1,0 +1,20 @@
+<h2> Product {{product.id?'Edit -':'Create'}} {{ product.price }}</h2>
+
+<form (ngSubmit)="saveProduct()">
+    <span *ngIf="message">{{message}}</span>
+    <hr>
+    Name : <input name="name" [(ngModel)] ="product.name" />
+    <!-- Price: <input name="price" [ngModel] ="product.price" (ngModelChange)="product.price = $event" /> -->
+    Price : <input name="price" [(ngModel)] = "product.price"/>
+    Year : <input name="year" [(ngModel)] = "product.year"/>
+    Brand: 
+    <select name="brandId" [(ngModel)]="product.brandId">
+        <option *ngFor="let brandVal of brands$ | async" [value]="brandVal.id"> {{brandVal.name}} </option>
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+
+
+
+<button (click)="gotoList()"> List Page </button>
