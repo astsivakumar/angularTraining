@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
 import { Observable } from 'rxjs';
@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  changeDetection : ChangeDetectionStrategy.OnPush  // 'default' > onPush-- it will 
+                                                    //call the change detection - asyn pipe will trigger the change detection
 })
 export class ProductListComponent implements OnInit {
 
@@ -51,6 +53,19 @@ export class ProductListComponent implements OnInit {
 
                       );
     
+  }
+
+  // impl to check the dom changing -- json(prod1) =/= json(prod1) ==> both will have have diff object.
+  refresh(){
+    this.products$ = this.productService.getProducts();
+  }
+
+  /*
+    this method will return a unique value for the object
+    improve the performance of the DOM
+   */
+  trackById(index:number, product: Product){
+    return product.id;
   }
 
 }

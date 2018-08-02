@@ -12,7 +12,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 const routes: Routes =[
   {
-    path:'products',
+    //path:'products',
+    path:'',//for lazy loading..
     component: ProductHomeComponent,
     //nested navigation
     children:[

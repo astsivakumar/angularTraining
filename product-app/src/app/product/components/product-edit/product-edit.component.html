@@ -1,18 +1,29 @@
 <h2> Product {{product.id?'Edit -':'Create'}} {{ product.price }}</h2>
 
-<form (ngSubmit)="saveProduct()">
+<form (ngSubmit)="saveProduct()" #productForm="ngForm">
     <span *ngIf="message">{{message}}</span>
     <hr>
-    Name : <input name="name" [(ngModel)] ="product.name" />
+    <p *ngIf="productForm.invalid"> Invalid form </p>
+    <p *ngIf="productForm.dirty"> From data changed </p>
+    <hr>
+    Name : <input 
+                name="name" 
+                [(ngModel)] ="product.name" 
+                minlength="2" 
+                required
+                #productName="ngModel"
+            />
+         <p *ngIf="productName.invalid" class="info">  Name is invalid </p>
+         <pre *ngIf="productName.errors">  {{productName.errors | json}}</pre>
     <!-- Price: <input name="price" [ngModel] ="product.price" (ngModelChange)="product.price = $event" /> -->
-    Price : <input name="price" [(ngModel)] = "product.price"/>
-    Year : <input name="year" [(ngModel)] = "product.year"/>
+    Price : <input name="price" [(ngModel)] = "product.price" pattern="[0-9]{3}"/>
+    Year : <input name="year" [(ngModel)] = "product.year"  minlength="4" maxlength="4"/>
     Brand: 
     <select name="brandId" [(ngModel)]="product.brandId">
         <option *ngFor="let brandVal of brands$ | async" [value]="brandVal.id"> {{brandVal.name}} </option>
     </select>
 
-    <button type="submit">Save</button>
+    <button type="submit" [disabled]="productForm.invalid">Save</button>
 </form>
 
 

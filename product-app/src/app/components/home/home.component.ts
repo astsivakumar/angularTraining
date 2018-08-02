@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   increment(){
+    console.trace();
     this.counter ++;
   }
 }

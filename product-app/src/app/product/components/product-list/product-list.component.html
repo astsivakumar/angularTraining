@@ -3,6 +3,9 @@
 
 <span *ngIf=message> {{message}} </span>
 <span *ngIf=progMessage> {{progMessage}} </span>
+<hr>
+<button (click)="refresh()" > Refresh </button>
+<hr>
 <table>
   <tr> 
     
@@ -12,7 +15,7 @@
       <th> Delete</th>
 
   </tr>
-  <tr *ngFor= "let prodVal of products$ | async" >
+  <tr *ngFor= "let prodVal of products$ | async; trackBy:trackById" >
     <td>
       <a [routerLink]="['/products','edit',prodVal.id]"> 
       {{prodVal.name}}

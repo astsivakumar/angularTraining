@@ -12,7 +12,7 @@ import { SharedModule } from './shared/shared.module';
 
 import {Routes, RouterModule} from '@angular/router';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { ProductModule } from './product/product.module';
+//import { ProductModule } from './product/product.module';
 
 //ng 4.3 onwards
 import {HttpClientModule} from '@angular/common/http';
@@ -31,6 +31,11 @@ const routes:Routes = [
         path : 'contact',
         component: ContactComponent
 
+    },
+
+    {   // for implmenting LAZY loading..
+        path : 'products',
+        loadChildren : './product/product.module#ProductModule'
     },
     
     {
@@ -51,7 +56,7 @@ const routes:Routes = [
         //step2:  apply route configuration into module
         RouterModule.forRoot(routes),
         //step3 : refer html
-        ProductModule
+        //ProductModule
     ],
     //components, directives, pipes
     declarations : [

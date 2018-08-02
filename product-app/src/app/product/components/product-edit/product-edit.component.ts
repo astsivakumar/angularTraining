@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 import {Router,
         ActivatedRoute // to read url paramaters and id
 } from '@angular/router';
 
-import {FormsModule,ReactiveFormsModule} from '@angular/forms'
+import {NgForm, FormsModule,ReactiveFormsModule} from '@angular/forms'
+
+
 import { Observable } from 'rxjs';
 
 import { ProductService } from '../../services/product.service';
@@ -18,6 +20,9 @@ import { Brand } from '../../models/brand';
 })
 export class ProductEditComponent implements OnInit {
 
+  //<form (ngSubmit)="saveProduct()" #productForm="ngForm">
+  @ViewChild('productForm')
+  form:NgForm; // get access to directive instance
 
   product : Product = new Product(); // create new product
   brands$ : Observable<Brand[]>;
@@ -44,6 +49,11 @@ export class ProductEditComponent implements OnInit {
     
     // getting brand list
     this.brands$ = this.prodService.getBrands();
+
+    this.form.valueChanges
+              .subscribe((changedValue)=>{
+                console.log('value changed ',changedValue);
+              });
   }
 
   gotoList() {
@@ -52,11 +62,21 @@ export class ProductEditComponent implements OnInit {
   }
 
   saveProduct(){
+
+    //example to stop user from submitting 'save' with out any change
+    if(this.form.pristine){
+      alert("form values are not changed !!! ");
+      return;
+    }
+
     this.prodService.saveProduct(this.product).subscribe(
       (value)=>{
         this.message="Product updated successfully..";
         this.product = value;
-        setTimeout(()=>{ this.message=null},3000);
+        setTimeout(()=>{
+           this.message=null;
+           this.gotoList();
+          },3000);
       }
     );
   }
